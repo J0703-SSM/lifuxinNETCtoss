@@ -1,0 +1,38 @@
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.lanou.mapper.CostMapper">
+    <!-- 查询所有资费表 -->
+    <select id="findAll"
+            resultType="com.lanou.domain.Cost">
+        SELECT * FROM COST
+    </select>
+
+    <!-- 通过id查询对象 -->
+    <select id="findById"
+            parameterType="int"
+            resultType="com.lanou.domain.Cost">
+        SELECT * FROM COST WHERE  cost_id = #{cost_id}
+    </select>
+    <!-- 更改状态,添加事件 -->
+    <select id="updateQy"
+            parameterType="com.lanou.domain.Cost">
+        UPDATE Cost SET starTime=#{starTime},status=#{status} WHERE  cost_id = #{cost_id}
+    </select>
+    <!-- 删除资费 -->
+    <delete id="deleteCost"
+            parameterType="int">
+        DELETE FROM COST WHERE cost_id = #{cost_id}
+    </delete>
+    <!-- 修改资费的详细内容 -->
+    <update id="updateCost"
+            parameterType="com.lanou.domain.Cost">
+        UPDATE Cost SET starTime=#{starTime},name=#{name},base_duration=#{base_duration},base_cost=#{base_cost},unit_cost=#{unit_cost},descr=#{descr} WHERE cost_id=#{cost_id}
+    </update>
+    <!-- 添加资费 -->
+    <insert id="addCost"
+            parameterType="com.lanou.domain.Cost">
+        INSERT INTO COST(name,base_duration,base_cost,unit_cost,status,descr,creaTime,starTime,cost_type) VALUES(#{name},#{base_duration},#{base_cost},#{unit_cost},#{status},#{descr},#{creaTime},#{starTime},#{cost_type})
+    </insert>
+
+
+</mapper>
+    
