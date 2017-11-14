@@ -15,7 +15,6 @@
        http://www.springframework.org/schema/tx/spring-tx.xsd
        http://www.springframework.org/schema/aop
        http://www.springframework.org/schema/aop/spring-aop.xsd">
-
     <!-- 引入db属性-->
     <context:property-placeholder location="classpath*:db.properties"/>
     <!-- 加入注解扫描 -->

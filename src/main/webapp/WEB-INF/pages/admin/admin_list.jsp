@@ -41,7 +41,7 @@
 <body>
 <!--Logo区域开始-->
 <div id="header">
-    <img src="../images/logo.png" alt="logo" class="left"/>
+    <img src="/resources/images/logo.png" alt="logo" class="left"/>
     <a href="#">[退出]</a>
 </div>
 <!--Logo区域结束-->
@@ -89,7 +89,7 @@
         </div>
         <!--删除和密码重置的操作提示-->
         <div id="operate_result_info" class="operate_fail">
-            <img src="../images/close.png" onclick="this.parentNode.style.display='none';"/>
+            <img src="/resources/images/close.png" onclick="this.parentNode.style.display='none';"/>
             <span>删除失败！数据并发错误。</span><!--密码重置失败！数据并发错误。-->
         </div>
         <!--数据区域：用表格展示数据-->
@@ -120,14 +120,19 @@
                         <td>${info.email}</td>
                         <td>${info.enrolldate}</td>
                         <td>
-                            <c:forEach items="${info.role_infos}" var="infos">
-                                <a class="summary" onmouseover="showDetail(true,this);"
-                                   onmouseout="showDetail(false,this);">${infos.role_name}</a>
-                                <!--浮动的详细信息-->
-                                <div class="detail_info">
-                                        ${infos.role_name}
-                                </div>
-                            </c:forEach>
+                            <a class="summary" onmouseover="showDetail(true,this);"
+                               onmouseout="showDetail(false,this);">${info.role_infos[0].role_name}</a>
+                            <!--浮动的详细信息-->
+                            <div class="detail_info">
+                                <c:forEach items="${info.role_infos}" var="infos" varStatus="s">
+                                    ${infos.role_name}
+                                    <c:if test="${s.last == false}">
+                                        ,
+                                    </c:if>
+                                </c:forEach>
+                            </div>
+
+
                         </td>
                         <td class="td_modi">
                             <input type="button" value="修改" class="btn_modify"
