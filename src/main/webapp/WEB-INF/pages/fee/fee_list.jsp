@@ -60,8 +60,7 @@
                     data: {
                         "cost_id": cost_id
                     },
-                    success: function (result) {
-                        alert(result);
+                    success: function () {
                         document.getElementById("operate_result_info").style.display = "block";
                         window.location.reload()
                     }

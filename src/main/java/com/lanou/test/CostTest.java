@@ -4,11 +4,13 @@ package com.lanou.test;
 import com.lanou.controller.MainController;
 import com.lanou.domain.Admin_info;
 import com.lanou.domain.Cost;
+import com.lanou.domain.Module_info;
 import com.lanou.domain.Role_info;
 import com.lanou.mapper.AdminMapper;
 import com.lanou.mapper.CostMapper;
 import com.lanou.mapper.RoleMapper;
 import com.lanou.service.CostService;
+import com.lanou.service.RoleService;
 import org.junit.Before;
 import org.junit.Test;
 import org.springframework.context.ApplicationContext;
@@ -91,6 +93,15 @@ public class CostTest {
     public void test111(){
         Role_info roleById = roleMapper.findRoleById(100);
         System.out.println(roleById);
+    }
+
+    @Test
+    public void rest21(){
+        RoleService roleService = (RoleService) context.getBean("roleService");
+        List<Module_info> roleModuleByRoleId = roleService.findRoleModuleByRoleId(611);
+        for (Module_info module_info : roleModuleByRoleId) {
+            System.out.println(module_info);
+        }
     }
 
 

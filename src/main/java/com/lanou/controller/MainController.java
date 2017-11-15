@@ -45,10 +45,10 @@ public class MainController {
             pc = 1;
         }
         int ps = 3;
-        if (sort == ""){
+        if ("".equals(sort)){
             sort = null;
         }
-        if (str == ""){
+        if ("".equals(str)){
             str = null;
         }
         PageBean<Cost> pb = costService.findAll(pc,ps,str);
@@ -81,7 +81,7 @@ public class MainController {
     @ResponseBody
     public String deleteCost(
             @RequestParam("cost_id")
-                    Integer cost_id, Model model) {
+                    Integer cost_id) {
         costService.deleteCost(cost_id);
         return "redirect:fee_list";
     }

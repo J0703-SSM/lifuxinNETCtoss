@@ -1,4 +1,5 @@
-﻿<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+﻿<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@page isELIgnored="false" %>
 <html>
     <head>
@@ -59,13 +60,13 @@
                 <div class="input_info_high">
                     <div class="input_info_scroll">
                         <ul>
-                            <li><input type="checkbox"/>管理员管理</li>
-                            <li><input type="checkbox"/>角色管理</li>
-                            <li><input type="checkbox"/>资费管理</li>
-                            <li><input type="checkbox"/>账务账号</li>
-                            <li><input type="checkbox"/>业务账号</li>
-                            <li><input type="checkbox"/>账单</li>
-                            <li><input type="checkbox"/>报表</li>
+                            <li><input type="checkbox" <c:if test="${roleModuleByRoleId.contains('管理员管理')}">checked</c:if>/>管理员管理</li>
+                            <li><input type="checkbox" <c:if test="${roleModuleByRoleId.contains('角色管理')}">checked</c:if>/>角色管理</li>
+                            <li><input type="checkbox" <c:if test="${roleModuleByRoleId.contains('资费管理')}">checked</c:if>/>资费管理</li>
+                            <li><input type="checkbox" <c:if test="${roleModuleByRoleId.contains('账务账号')}">checked</c:if>/>账务账号</li>
+                            <li><input type="checkbox" <c:if test="${roleModuleByRoleId.contains('业务账号')}">checked</c:if>/>业务账号</li>
+                            <li><input type="checkbox" <c:if test="${roleModuleByRoleId.contains('账单')}">checked</c:if>/>账单</li>
+                            <li><input type="checkbox" <c:if test="${roleModuleByRoleId.contains('报表')}">checked</c:if>/>报表</li>
                         </ul>
                     </div>
                     <span class="required">*</span>
