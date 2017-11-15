@@ -48,7 +48,7 @@
 <!--导航区域开始-->
 <div id="navi">
     <ul id="menu">
-        <li><a href="/WEB-INF/pages/index.jsp" class="index_off"></a></li>
+        <li><a href="/login" class="index_off"></a></li>
         <li><a href="../role/role_list.jsp" class="role_off"></a></li>
 
         <li><a href=/admin_list" class="admin_on"></a></li>
@@ -85,7 +85,7 @@
             <div>角色：<input type="text" value="" class="text_search width200"/></div>
             <div><input type="button" value="搜索" class="btn_search"/></div>
             <input type="button" value="密码重置" class="btn_add" onclick="resetPwd();"/>
-            <input type="button" value="增加" class="btn_add" onclick="location.href='admin_add.jsp';"/>
+            <input type="button" value="增加" class="btn_add" onclick="location.href='/admin_add';"/>
         </div>
         <!--删除和密码重置的操作提示-->
         <div id="operate_result_info" class="operate_fail">
@@ -136,7 +136,7 @@
                         </td>
                         <td class="td_modi">
                             <input type="button" value="修改" class="btn_modify"
-                                   onclick="location.href='admin_modi.jsp';"/>
+                                   onclick="location.href='/admin_modi';"/>
                             <input type="button" value="删除" class="btn_delete" onclick="deleteAdmin();"/>
                         </td>
                     </tr>

@@ -10,10 +10,25 @@
     <script language="javascript" type="text/javascript">
         //排序按钮的点击事件
         function sort(btnObj) {
-            if (btnObj.className == "sort_desc")
+            var str = btnObj.value;
+            if (btnObj.className == "sort_desc") {
+                if (str == '基费') {
+                    window.location.href = "/fee_list/?str=base_cost asc&sort=sort_asc";
+                }
+                if (str == '时长') {
+                    window.location.href = "/fee_list/?str=base_duration asc&sort=sort_asc";
+                }
                 btnObj.className = "sort_asc";
-            else
+            } else {
                 btnObj.className = "sort_desc";
+                if (str == '基费') {
+                    window.location.href = "/fee_list/?str=base_cost desc&sort=sort_desc";
+                }
+                if (str == '时长') {
+                    window.location.href = "/fee_list/?str=base_duration desc&sort=sort_desc";
+                }
+            }
+
         }
 
         //启用
@@ -26,7 +41,7 @@
                     data: {
                         "cost_id": cost_id
                     },
-                    success: function (result) {
+                    success: function () {
                         document.getElementById("operate_result_info").style.display = "block";
                         window.location.reload()
                     }
@@ -65,10 +80,12 @@
 <!--导航区域开始-->
 <div id="navi">
     <ul id="menu">
-        <li><a href="../../WEB-INF/pages/index.jsp" class="index_off"></a></li>
+        <li><a href="/login" class="index_off"></a></li>
         <li><a href="../role/role_list.jsp" class="role_off"></a></li>
+
         <li><a href="/admin_list" class="admin_off"></a></li>
         <li><a href="/fee_list" class="fee_on"></a></li>
+
         <li><a href="../account/account_list.jsp" class="account_off"></a></li>
         <li><a href="../service/service_list.jsp" class="service_off"></a></li>
         <li><a href="../bill/bill_list.jsp" class="bill_off"></a></li>
@@ -85,8 +102,22 @@
         <div class="search_add">
             <div>
                 <!--<input type="button" value="月租" class="sort_asc" onclick="sort(this);" />-->
-                <input type="button" value="基费" class="sort_asc" onclick="sort(this);"/>
-                <input type="button" value="时长" class="sort_asc" onclick="sort(this);"/>
+                <input type="button" value="基费"
+                        <c:if test="${sort == null}">
+                            class="sort_asc"
+                        </c:if>
+                        <c:if test="${sort != null}">
+                            class="${sort}"
+                        </c:if>
+                       onclick="sort(this);"/>
+                <input type="button" value="时长"
+                        <c:if test="${sort == null}">
+                            class="sort_asc"
+                        </c:if>
+                        <c:if test="${sort != null}">
+                            class="${sort}"
+                        </c:if>
+                       onclick="sort(this);"/>
             </div>
 
             <input type="button" value="增加" class="btn_add" onclick="location.href='/addCost1';"/>
@@ -111,7 +142,7 @@
                     <th class="width50">状态</th>
                     <th class="width200"></th>
                 </tr>
-                <c:forEach items="${costList}" var="cost">
+                <c:forEach items="${pb.beanList}" var="cost">
                     <tr>
                         <td>${cost.cost_id}</td>
                         <td><a href="/fee_detail?cost_id=${cost.cost_id}">${cost.name}</a></td>
@@ -153,13 +184,47 @@
         </div>
         <!--分页-->
         <div id="pages">
-            <a href="#">上一页</a>
-            <a href="#" class="current_page">1</a>
-            <a href="#">2</a>
-            <a href="#">3</a>
-            <a href="#">4</a>
-            <a href="#">5</a>
-            <a href="#">下一页</a>
+
+            <c:if test="${pb.pc > 1}">
+                <a href="/fee_list?pc=${pb.pc-1}&str=${sessionScope.str}&sort=${sort}">上一页</a>
+            </c:if>
+
+            <c:choose>
+                <c:when test="${pb.tp <= 10}">
+                    <c:set var="begin" value="1"/>
+                    <c:set var="end" value="${pb.tp}"/>
+                </c:when>
+                <c:otherwise>
+                    <c:set var="begin" value="${pb.pc-5}"/>
+                    <c:set var="end" value="${pb.pc+4}"/>
+                    <%-- 头溢出 --%>
+                    <c:if test="${begin < 1}">
+                        <c:set var="begin" value="1"/>
+                        <c:set var="end" value="10"/>
+                    </c:if>
+                    <%-- 尾溢出 --%>
+                    <c:if test="${end > pb.tp}">
+                        <c:set var="begin" value="${pb.tp - 9}"/>
+                        <c:set var="end" value="${pb.tp}"/>
+                    </c:if>
+                </c:otherwise>
+            </c:choose>
+            <c:forEach var="i" begin="${begin}" end="${end}">
+                <c:choose>
+                    <c:when test="${pb.pc eq i}">
+                        <a href="/fee_list?pc=${i}&str=${sessionScope.str}&sort=${sort}"
+                           class="current_page">${i}</a>
+                    </c:when>
+                    <c:otherwise>
+                        <a href="/fee_list?pc=${i}&str=${sessionScope.str}&sort=${sort}">${i}</a>
+                    </c:otherwise>
+                </c:choose>
+            </c:forEach>
+            <c:if test="${pb.pc < pb.tp}">
+                <a href="/fee_list?pc=${pb.pc+1}&str=${sessionScope.str}&sort=${sort}">下一页</a>
+            </c:if>
+
+
         </div>
     </form>
 </div>

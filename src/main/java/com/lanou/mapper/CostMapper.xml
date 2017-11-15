@@ -4,6 +4,15 @@
     <select id="findAll"
             resultType="com.lanou.domain.Cost">
         SELECT * FROM COST
+        <if test="orderByClause != null">
+            ORDER BY ${orderByClause}
+        </if>
+        <if test="start != null and pagesize != null">
+            limit #{start},#{pagesize}
+        </if>
+    </select>
+    <select id="findCount" resultType="int">
+        SELECT COUNT(cost_id) FROM COST
     </select>
 
     <!-- 通过id查询对象 -->

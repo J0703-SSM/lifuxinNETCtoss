@@ -3,6 +3,7 @@ package com.lanou.controller;
 import com.lanou.domain.Cost;
 import com.lanou.response.AjaxLoginResult;
 import com.lanou.service.CostService;
+import com.lanou.util.PageBean;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
@@ -11,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.sql.Timestamp;
 import java.util.Date;
@@ -36,16 +38,32 @@ public class MainController {
 
     // 跳转到资费管理
     @RequestMapping(value = "/fee_list")
-    public String fee_List(Model model) {
-        List<Cost> costList = costService.findAll();
-        model.addAttribute("costList", costList);
+    public String fee_List(Model model, Integer pc, String str,
+                           String sort, HttpServletRequest request,
+                           HttpSession session) {
+        if (pc == null){
+            pc = 1;
+        }
+        int ps = 3;
+        if (sort == ""){
+            sort = null;
+        }
+        if (str == ""){
+            str = null;
+        }
+        PageBean<Cost> pb = costService.findAll(pc,ps,str);
+        model.addAttribute("pb",pb);
+        request.setAttribute("sort",sort);
+        session.setAttribute("str",str);
+        System.out.println("cost:"+ pb.getBeanList());
         return "fee/fee_list";
     }
+
 
     // 点击修改时间并且添加时间
     @RequestMapping("/updateQy")
     @ResponseBody
-    public Cost updateQy(
+    public String updateQy(
             @RequestParam("cost_id")
                     Integer id, Model model) {
         Cost cost = costService.findById(id);
@@ -55,23 +73,17 @@ public class MainController {
         cost.setStarTime(timestamp);
         cost.setStatus("1");
         costService.updateQy(cost);
-        List<Cost> costList = costService.findAll();
-        model.addAttribute("costList", costList);
-        return cost;
+        return "redirect:fee_list";
     }
 
     // 删除资费
     @RequestMapping("/deleteCost")
     @ResponseBody
-    public Cost deleteCost(
+    public String deleteCost(
             @RequestParam("cost_id")
                     Integer cost_id, Model model) {
         costService.deleteCost(cost_id);
-
-        Cost cost = costService.findById(cost_id);
-        List<Cost> costList = costService.findAll();
-        model.addAttribute("costList", costList);
-        return cost;
+        return "redirect:fee_list";
     }
 
     // 跳转到修改的页面
@@ -98,8 +110,7 @@ public class MainController {
     @RequestMapping("/addCost")
     public String addCoat(Cost cost){
         cost.setStatus("0");
-        cost.setCreaTime(
-                new Timestamp(System.currentTimeMillis()));
+        cost.setCreaTime(new Timestamp(System.currentTimeMillis()));
         costService.addCost(cost);
         return "redirect:fee_list";
     }

@@ -18,7 +18,8 @@ public class Admin_info {
     private String email;//邮箱
     private Timestamp enrolldate; // 授权日期
     private List<Role_info> role_infos = new ArrayList<Role_info>();
-//    private List<Admin_role> admin_roles = new ArrayList<Admin_role>();
+
+
 
 
 
@@ -43,13 +44,7 @@ public class Admin_info {
         this.email = email;
         this.enrolldate = enrolldate;
     }
-//    public List<Admin_role> getAdmin_roles() {
-//        return admin_roles;
-//    }
-//
-//    public void setAdmin_roles(List<Admin_role> admin_roles) {
-//        this.admin_roles = admin_roles;
-//    }
+
 
 
     @Override

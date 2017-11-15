@@ -1,9 +1,11 @@
 ﻿<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page isELIgnored="false"%>
 <html>
     <head>
         <title>云科技</title>
-        <link type="text/css" rel="stylesheet" media="all" href="../styles/global.css" />
-        <link type="text/css" rel="stylesheet" media="all" href="../styles/global_color.css" />
+        <script src="/resources/js/jquery-3.2.1.js"></script>
+        <link type="text/css" rel="stylesheet" media="all" href="/resources/styles/global.css" />
+        <link type="text/css" rel="stylesheet" media="all" href="/resources/styles/global_color.css" />
         <script language="javascript" type="text/javascript">
             //保存成功的提示信息
             function showResult() {
@@ -16,18 +18,19 @@
                     divResult.style.display = "block";
                 else
                     divResult.style.display = "none";
-            
 
-            //显示选填的信息项
-            function showOptionalInfo(imgObj) {
-                var div = document.getElementById("optionalInfo");
-                if (div.className == "hide") {
-                    div.className = "show";
-                    imgObj.src = "../images/hide.png";
-                }
-                else {
-                    div.className = "hide";
-                    imgObj.src = "../images/show.png";
+
+                //显示选填的信息项
+                function showOptionalInfo(imgObj) {
+                    var div = document.getElementById("optionalInfo");
+                    if (div.className == "hide") {
+                        div.className = "show";
+                        imgObj.src = "/resources/images/hide.png";
+                    }
+                    else {
+                        div.className = "hide";
+                        imgObj.src = "/resources/images/show.png";
+                    }
                 }
             }
         </script>
@@ -35,18 +38,20 @@
     <body>
         <!--Logo区域开始-->
         <div id="header">
-            <img src="../images/logo.png" alt="logo" class="left"/>
+            <img src="/resources/images/logo.png" alt="logo" class="left"/>
             <a href="#">[退出]</a>            
         </div>
         <!--Logo区域结束-->
         <!--导航区域开始-->
         <div id="navi">
             <ul id="menu">
-                <li><a href="../../WEB-INF/pages/index.jsp" class="index_off"></a></li>
+                <li><a href="/login" class="index_off"></a></li>
                 <li><a href="../role/role_list.jsp" class="role_off"></a></li>
                 <li><a href="../admin/admin_list.jsp" class="admin_off"></a></li>
                 <li><a href="../fee/fee_list.jsp" class="fee_off"></a></li>
-                <li><a href="account_list.jsp" class="account_on"></a></li>
+
+                <li><a href="/account_list" class="account_on"></a></li>
+
                 <li><a href="../service/service_list.jsp" class="service_off"></a></li>
                 <li><a href="../bill/bill_list.jsp" class="bill_off"></a></li>
                 <li><a href="../report/report_list.jsp" class="report_off"></a></li>

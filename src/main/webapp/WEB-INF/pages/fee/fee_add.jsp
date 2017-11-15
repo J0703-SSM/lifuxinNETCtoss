@@ -55,14 +55,14 @@
     <body>
         <!--Logo区域开始-->
         <div id="header">
-            <img src="../images/logo.png" alt="logo" class="left"/>
+            <img src="/resources/images/logo.png" alt="logo" class="left"/>
             <a href="#">[退出]</a>            
         </div>
         <!--Logo区域结束-->
         <!--导航区域开始-->
         <div id="navi">
             <ul id="menu">
-                <li><a href="../../WEB-INF/pages/index.jsp" class="index_off"></a></li>
+                <li><a href="/login" class="index_off"></a></li>
                 <li><a href="../role/role_list.jsp" class="role_off"></a></li>
 
                 <li><a href="/admin_list" class="admin_off"></a></li>

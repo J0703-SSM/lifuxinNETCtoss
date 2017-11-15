@@ -1,0 +1,33 @@
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.lanou.mapper.RoleMapper">
+    <!-- 多表查询所有 -->
+    <resultMap id="roleByModule" type="com.lanou.domain.Role_info">
+        <id column="role_id" property="role_id"/>
+        <result column="role_name" property="role_name"/>
+        <collection property="module_infos"
+                    ofType="com.lanou.domain.Module_info">
+            <id column="module_id" property="module_id"/>
+            <id column="name" property="name"/>
+        </collection>
+    </resultMap>
+    <select id="findRoleModule"
+            parameterType="java.lang.String"
+            resultMap="roleByModule">
+        SELECT
+        role_info.role_id,
+        role_info.role_name,
+        module_info.module_id,
+        module_info.name
+        FROM role_info,module_info,role_module
+        WHERE role_info.role_id=role_module.role_id
+        AND role_module.module_id=module_info.module_id
+    </select>
+
+    <!-- 通过id回显查询一个对象 -->
+    <select id="findRoleById"
+            parameterType="int"
+            resultType="com.lanou.domain.Role_info">
+        SELECT * FROM role_info WHERE role_id=#{role_id}
+    </select>
+
+</mapper>

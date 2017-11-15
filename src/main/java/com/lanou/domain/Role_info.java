@@ -1,5 +1,8 @@
 package com.lanou.domain;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * Created by dllo on 17/11/13.
  */
@@ -7,6 +10,8 @@ public class Role_info {
 
     private int role_id;//主键role_id
     private String role_name; // 角色名称
+
+    private List<Module_info> module_infos = new ArrayList<Module_info>();
 
     public Role_info() {
     }
@@ -42,5 +47,13 @@ public class Role_info {
 
     public void setRole_name(String role_name) {
         this.role_name = role_name;
+    }
+
+    public List<Module_info> getModule_infos() {
+        return module_infos;
+    }
+
+    public void setModule_infos(List<Module_info> module_infos) {
+        this.module_infos = module_infos;
     }
 }

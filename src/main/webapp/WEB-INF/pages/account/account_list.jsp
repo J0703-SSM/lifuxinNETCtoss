@@ -1,9 +1,10 @@
 ﻿<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@page isELIgnored="false" %>
 <html>
     <head>
         <title>云科技</title>
-        <link type="text/css" rel="stylesheet" media="all" href="../styles/global.css" />
-        <link type="text/css" rel="stylesheet" media="all" href="../styles/global_color.css" /> 
+        <link type="text/css" rel="stylesheet" media="all" href="/resources/styles/global.css" />
+        <link type="text/css" rel="stylesheet" media="all" href="/resources/styles/global_color.css" />
         <script language="javascript" type="text/javascript">
             //删除
             function deleteAccount() {
@@ -20,18 +21,20 @@
     <body>
         <!--Logo区域开始-->
         <div id="header">
-            <img src="../images/logo.png" alt="logo" class="left"/>
+            <img src="/resources/images/logo.png" alt="logo" class="left"/>
             <a href="#">[退出]</a>            
         </div>
         <!--Logo区域结束-->
         <!--导航区域开始-->
         <div id="navi">                        
             <ul id="menu">
-                <li><a href="../../WEB-INF/pages/index.jsp" class="index_off"></a></li>
+                <li><a href="/login" class="index_off"></a></li>
                 <li><a href="../role/role_list.jsp" class="role_off"></a></li>
                 <li><a href="../admin/admin_list.jsp" class="admin_off"></a></li>
                 <li><a href="../fee/fee_list.jsp" class="fee_off"></a></li>
-                <li><a href="account_list.jsp" class="account_on"></a></li>
+
+                <li><a href="/account_list" class="account_on"></a></li>
+
                 <li><a href="../service/service_list.jsp" class="service_off"></a></li>
                 <li><a href="../bill/bill_list.jsp" class="bill_off"></a></li>
                 <li><a href="../report/report_list.jsp" class="report_off"></a></li>
@@ -47,7 +50,7 @@
                 <div class="search_add">                        
                     <div>身份证：<input type="text" value="不验证" class="text_search" /></div>                            
                     <div>姓名：<input type="text" class="width70 text_search" value="不验证" /></div>
-                    <div>登录名：<input type="text"  value="不验证" class="text_search"" /></div>
+                    <div>登录名：<input type="text"  value="不验证" class="text_search"/></div>
                     <div>
                         状态：
                         <select class="select_search">
@@ -92,59 +95,6 @@
                             <input type="button" value="删除" class="btn_delete" onclick="deleteAccount();" />
                         </td>
                     </tr>
-                    <tr>
-                        <td>2</td>
-                        <td><a href="account_detail.jsp">贾强</a></td>
-                        <td>230102197902137862</td>
-                        <td>jiaqiang</td>
-                        <td>暂停</td>
-                        <td>2013-01-23</td>
-                        <td>2013-02-23 00:00:00</td>                            
-                        <td class="td_modi">
-                            <input type="button" value="开通" class="btn_start" onclick="setState();" />
-                            <input type="button" value="修改" class="btn_modify" onclick="location.href='account_modi.jsp';" />
-                            <input type="button" value="删除" class="btn_delete" onclick="deleteAccount();" />
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>3</td>
-                        <td><a href="account_detail.jsp">贾强</a></td>
-                        <td>230102197902137862</td>
-                        <td>jiaqiang</td>
-                        <td>删除</td>
-                        <td>2013-01-23</td>
-                        <td>2013-02-23 00:00:00</td>                            
-                        <td class="td_modi">
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>4</td>
-                        <td><a href="account_detail.jsp">贾强</a></td>
-                        <td>230102197902137862</td>
-                        <td>jiaqiang</td>
-                        <td>开通</td>
-                        <td>2013-01-23</td>
-                        <td>2013-02-23 00:00:00</td>                            
-                        <td class="td_modi">
-                            <input type="button" value="暂停" class="btn_pause" onclick="setState();" />
-                            <input type="button" value="修改" class="btn_modify" onclick="location.href='account_modi.jsp';" />
-                            <input type="button" value="删除" class="btn_delete" onclick="deleteAccount();" />
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>5</td>
-                        <td><a href="account_detail.jsp">贾强</a></td>
-                        <td>230102197902137862</td>
-                        <td>jiaqiang</td>
-                        <td>暂停</td>
-                        <td>2013-01-23</td>
-                        <td>2013-02-23 00:00:00</td>                            
-                        <td class="td_modi">
-                            <input type="button" value="开通" class="btn_start" onclick="setState();" />
-                            <input type="button" value="修改" class="btn_modify" onclick="location.href='account_modi.jsp';" />
-                            <input type="button" value="删除" class="btn_delete" onclick="deleteAccount();" />
-                        </td>
-                    </tr>                    
                 </table>
                 <p>业务说明：<br />
                 1、创建则开通，记载创建时间；<br />

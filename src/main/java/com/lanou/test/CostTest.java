@@ -7,6 +7,7 @@ import com.lanou.domain.Cost;
 import com.lanou.domain.Role_info;
 import com.lanou.mapper.AdminMapper;
 import com.lanou.mapper.CostMapper;
+import com.lanou.mapper.RoleMapper;
 import com.lanou.service.CostService;
 import org.junit.Before;
 import org.junit.Test;
@@ -26,6 +27,7 @@ public class CostTest {
     private ApplicationContext context;
     private CostMapper costMapper;
     private AdminMapper adminMapper;
+    private RoleMapper roleMapper;
 
 
     @Before
@@ -33,15 +35,16 @@ public class CostTest {
         context = new ClassPathXmlApplicationContext("spring-config.xml");
         costMapper = (CostMapper) context.getBean("costMapper");
         adminMapper = (AdminMapper) context.getBean("adminMapper");
+        roleMapper = (RoleMapper) context.getBean("roleMapper");
 
     }
 
     @Test
     public void testCost(){
-        List<Cost> all = costMapper.findAll();
-        for (Cost cost : all) {
-            System.out.println(cost);
-        }
+//        List<Cost> all = costMapper.findAll();
+//        for (Cost cost : all) {
+//            System.out.println(cost);
+//        }
     }
     @Test
     public void testService(){
@@ -82,6 +85,12 @@ public class CostTest {
                 System.out.println(role_info.getRole_name());
             }
         }
+    }
+
+    @Test
+    public void test111(){
+        Role_info roleById = roleMapper.findRoleById(100);
+        System.out.println(roleById);
     }
 
 

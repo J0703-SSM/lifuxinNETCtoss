@@ -1,6 +1,6 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.lanou.mapper.AdminMapper">
-
+    <!-- 多表查询,显示所有 -->
     <resultMap id="rolesByAdminInfos" type="com.lanou.domain.Admin_info">
         <id column="admin_id" property="admin_id"/>
         <result column="admin_code" property="admin_code"/>
@@ -9,11 +9,6 @@
         <result column="telephone" property="telephone"/>
         <result column="email" property="email"/>
         <result column="enrolldate" property="enrolldate"/>
-        <!--<collection property="admin_roles"-->
-                    <!--ofType="com.lanou.domain.Admin_role">-->
-            <!--<id column="admin_id" property="admin_id"/>-->
-            <!--<result column="role_id" property="role_id"/>-->
-        <!--</collection>-->
         <collection property="role_infos"
                     ofType="com.lanou.domain.Role_info">
             <id column="role_id" property="role_id"/>
@@ -29,10 +24,6 @@
         admin_info.email,
         admin_info.enrolldate
     </sql>
-    <!--<sql id="admin_roleSql">-->
-         <!--admin_role.admin_id,-->
-        <!--admin_role.role_id-->
-    <!--</sql>-->
     <sql id="role_infoSql">
         role_info.role_id,
         role_info.role_name
@@ -47,5 +38,25 @@
         AND admin_role.role_id=role_info.role_id
     </select>
 
+    <!-- 添加管理员账号 -->
+    <insert id="addAdmin"
+            parameterType="com.lanou.domain.Admin_info"
+            keyProperty="admin_id"
+            useGeneratedKeys="true">
+        INSERT INTO admin_info(name,admin_code,password,telephone,email,enrolldate)VALUES
+        (#{name},#{admin_code},#{password},#{telephone},#{email},#{enrolldate})
+    </insert>
+    <!-- 添加角色 -->
+    <insert id="addRole"
+            parameterType="com.lanou.domain.Role_info"
+            keyProperty="role_id"
+            useGeneratedKeys="true">
+        INSERT INTO role_info(role_name) VALUES (#{role_name})
+    </insert>
+    <!-- 添加中间表 -->
+    <insert id="addAdmin_Role"
+            parameterType="com.lanou.domain.Admin_role">
+        INSERT INTO admin_role(admin_id,role_id) VALUES (#{admin_id},#{role_id})
+    </insert>
 
 </mapper>

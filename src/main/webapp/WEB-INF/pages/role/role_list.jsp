@@ -1,9 +1,12 @@
-﻿<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+﻿<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@page isELIgnored="false" %>
 <html>
     <head>
         <title></title>
-        <link type="text/css" rel="stylesheet" media="all" href="../styles/global.css" />
-        <link type="text/css" rel="stylesheet" media="all" href="../styles/global_color.css" /> 
+        <script src="/resources/js/jquery-3.2.1.js"></script>
+        <link type="text/css" rel="stylesheet" media="all" href="/resources/styles/global.css" />
+        <link type="text/css" rel="stylesheet" media="all" href="/resources/styles/global_color.css" />
         <script language="javascript" type="text/javascript">
             function deleteRole() {
                 var r = window.confirm("确定要删除此角色吗？");
@@ -14,14 +17,14 @@
     <body>
         <!--Logo区域开始-->
         <div id="header">
-            <img src="../images/logo.png" alt="logo" class="left"/>
+            <img src="/resources/images/logo.png" alt="logo" class="left"/>
             <a href="#">[退出]</a>            
         </div>
         <!--Logo区域结束-->
         <!--导航区域开始-->
         <div id="navi">                        
             <ul id="menu">
-                <li><a href="../index.jsp" class="index_off"></a></li>
+                <li><a href="/login" class="index_off"></a></li>
                 <li><a href="role_list.jsp" class="role_on"></a></li>
                 <li><a href="../admin/admin_list.jsp" class="admin_off"></a></li>
                 <li><a href="../fee/fee_list.jsp" class="fee_off"></a></li>
@@ -39,11 +42,11 @@
             <form action="" method="">
                 <!--查询-->
                 <div class="search_add">
-                    <input type="button" value="增加" class="btn_add" onclick="location.href='role_add.jsp';" />
+                    <input type="button" value="增加" class="btn_add" onclick="location.href='/role_add';" />
                 </div>  
                 <!--删除的操作提示-->
                 <div id="operate_result_info" class="operate_success">
-                    <img src="../images/close.png" onclick="this.parentNode.style.display='none';" />
+                    <img src="/resources/images/close.png" onclick="this.parentNode.style.display='none';" />
                     删除成功！
                 </div> <!--删除错误！该角色被使用，不能删除。-->
                 <!--数据区域：用表格展示数据-->     
@@ -54,43 +57,25 @@
                             <th>角色名称</th>
                             <th class="width600">拥有的权限</th>
                             <th class="td_modi"></th>
-                        </tr>                      
-                        <tr>
-                            <td>1</td>
-                            <td>贾强</td>
-                            <td>角色管理、管理员管理、资费管理、账务账号、业务账号、账单、报表</td>
-                            <td>
-                                <input type="button" value="修改" class="btn_modify" onclick="location.href='role_modi.jsp';"/>
-                                <input type="button" value="删除" class="btn_delete" onclick="deleteRole();" />
-                            </td>
                         </tr>
-                        <tr>
-                            <td>1</td>
-                            <td>贾强</td>
-                            <td>超级管理员、账单管理员</td>
-                            <td>
-                                <input type="button" value="修改" class="btn_modify" />
-                                <input type="button" value="删除" class="btn_delete" />
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>1</td>
-                            <td>贾强</td>
-                            <td>超级管理员、账单管理员</td>
-                            <td>
-                                <input type="button" value="修改" class="btn_modify" />
-                                <input type="button" value="删除" class="btn_delete" />
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>1</td>
-                            <td>贾强</td>
-                            <td>超级管理员、账单管理员</td>
-                            <td>
-                                <input type="button" value="修改" class="btn_modify" />
-                                <input type="button" value="删除" class="btn_delete" />
-                            </td>
-                        </tr>
+                        <c:forEach items="${roleModule}" var="rm">
+                            <tr>
+                                <td>${rm.role_id}</td>
+                                <td>${rm.role_name}</td>
+                                <td>
+                                <c:forEach items="${rm.module_infos}" var="as" varStatus="s">
+                                    ${as.name}
+                                    <c:if test="${s.last == false}">
+                                        ,
+                                    </c:if>
+                                </c:forEach>
+                                </td>
+                                <td>
+                                    <input type="button" value="修改" class="btn_modify" onclick="location.href='/role_modi?role_id=${rm.role_id}';"/>
+                                    <input type="button" value="删除" class="btn_delete" onclick="deleteRole();" />
+                                </td>
+                            </tr>
+                        </c:forEach>
                     </table>
                 </div> 
                 <!--分页-->

@@ -1,8 +1,10 @@
 package com.lanou.service;
 
 import com.lanou.domain.Cost;
+import com.lanou.util.PageBean;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * Created by dllo on 17/11/11.
@@ -10,7 +12,7 @@ import java.util.List;
 public interface CostService {
 
     // 显示资费列表
-    List<Cost> findAll();
+    PageBean<Cost> findAll(int pc,int ps,String str);
 
     // 通过id查询对象
     Cost findById(Integer cost_id);
@@ -25,5 +27,7 @@ public interface CostService {
     void updateCost(Cost cost);
     // 添加资费
     void addCost(Cost cost);
+
+
 
 }
