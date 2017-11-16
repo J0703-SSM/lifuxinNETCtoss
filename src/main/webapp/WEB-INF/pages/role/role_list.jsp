@@ -8,9 +8,22 @@
         <link type="text/css" rel="stylesheet" media="all" href="/resources/styles/global.css" />
         <link type="text/css" rel="stylesheet" media="all" href="/resources/styles/global_color.css" />
         <script language="javascript" type="text/javascript">
-            function deleteRole() {
+            function deleteRole(role_id) {
                 var r = window.confirm("确定要删除此角色吗？");
-                document.getElementById("operate_result_info").style.display = "block";
+                if (r == true){
+                    $.ajax({
+                        type:"get",
+                        url:"/deleteRoleInfo",
+                        data:{
+                            "role_id":role_id
+                        },
+                        success:function () {
+                            document.getElementById("operate_result_info").style.display = "block";
+                            window.location.reload()
+                        }
+                    })
+
+                }
             }
         </script>
     </head>
@@ -25,10 +38,11 @@
         <div id="navi">                        
             <ul id="menu">
                 <li><a href="/login" class="index_off"></a></li>
-                <li><a href="role_list.jsp" class="role_on"></a></li>
-                <li><a href="../admin/admin_list.jsp" class="admin_off"></a></li>
-                <li><a href="../fee/fee_list.jsp" class="fee_off"></a></li>
-                <li><a href="../account/account_list.jsp" class="account_off"></a></li>
+                <li><a href="/role_list" class="role_on"></a></li>
+
+                <li><a href="/admin_list" class="admin_off"></a></li>
+                <li><a href="/fee_list" class="fee_off"></a></li>
+                <li><a href="/account_list" class="account_off"></a></li>
                 <li><a href="../service/service_list.jsp" class="service_off"></a></li>
                 <li><a href="../bill/bill_list.jsp" class="bill_off"></a></li>
                 <li><a href="../report/report_list.jsp" class="report_off"></a></li>
@@ -72,7 +86,7 @@
                                 </td>
                                 <td>
                                     <input type="button" value="修改" class="btn_modify" onclick="location.href='/role_modi?role_id=${rm.role_id}';"/>
-                                    <input type="button" value="删除" class="btn_delete" onclick="deleteRole();" />
+                                    <input type="button" value="删除" class="btn_delete" onclick="deleteRole(${rm.role_id});" />
                                 </td>
                             </tr>
                         </c:forEach>

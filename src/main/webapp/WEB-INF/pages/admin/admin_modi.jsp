@@ -1,9 +1,10 @@
-﻿<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+﻿<%@ page contentType="text/html;charset=UTF-8" language="java"%>
+<%@page isELIgnored="false"%>
 <html>
 <head>
     <title></title>
-    <link type="text/css" rel="stylesheet" media="all" href="../styles/global.css"/>
-    <link type="text/css" rel="stylesheet" media="all" href="../styles/global_color.css"/>
+    <link type="text/css" rel="stylesheet" media="all" href="/resources/styles/global.css"/>
+    <link type="text/css" rel="stylesheet" media="all" href="/resources/styles/global_color.css"/>
     <script language="javascript" type="text/javascript">
         //保存成功的提示消息
         function showResult() {
@@ -22,7 +23,7 @@
 <body>
 <!--Logo区域开始-->
 <div id="header">
-    <img src="../images/logo.png" alt="logo" class="left"/>
+    <img src="/resources/images/logo.png" alt="logo" class="left"/>
     <a href="#">[退出]</a>
 </div>
 <!--Logo区域结束-->
@@ -30,7 +31,7 @@
 <div id="navi">
     <ul id="menu">
         <li><a href="/login" class="index_off"></a></li>
-        <li><a href="../role/role_list.jsp" class="role_off"></a></li>
+        <li><a href="/role_list" class="role_off"></a></li>
 
         <li><a href="/admin_list" class="admin_on"></a></li>
 

@@ -55,7 +55,7 @@ public class MainController {
         model.addAttribute("pb",pb);
         request.setAttribute("sort",sort);
         session.setAttribute("str",str);
-        System.out.println("cost:"+ pb.getBeanList());
+//        System.out.println("cost:"+ pb.getBeanList());
         return "fee/fee_list";
     }
 
@@ -64,8 +64,7 @@ public class MainController {
     @RequestMapping("/updateQy")
     @ResponseBody
     public String updateQy(
-            @RequestParam("cost_id")
-                    Integer id, Model model) {
+            @RequestParam("cost_id") Integer id) {
         Cost cost = costService.findById(id);
         Date date = new Date();
         long time = date.getTime();
@@ -122,5 +121,6 @@ public class MainController {
         model.addAttribute("cost",cost);
         return "fee/fee_detail";
     }
+
 
 }

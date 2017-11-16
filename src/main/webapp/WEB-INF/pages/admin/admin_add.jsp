@@ -31,7 +31,7 @@
         <div id="navi">
             <ul id="menu">
                 <li><a href="/login" class="index_off"></a></li>
-                <li><a href="../role/role_list.jsp" class="role_off"></a></li>
+                <li><a href="/role_list" class="role_off"></a></li>
 
                 <li><a href="/admin_list" class="admin_on"></a></li>
 

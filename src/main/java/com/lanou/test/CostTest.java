@@ -30,6 +30,7 @@ public class CostTest {
     private CostMapper costMapper;
     private AdminMapper adminMapper;
     private RoleMapper roleMapper;
+    private RoleService roleService;
 
 
     @Before
@@ -38,7 +39,7 @@ public class CostTest {
         costMapper = (CostMapper) context.getBean("costMapper");
         adminMapper = (AdminMapper) context.getBean("adminMapper");
         roleMapper = (RoleMapper) context.getBean("roleMapper");
-
+        roleService = (RoleService) context.getBean("roleService");
     }
 
     @Test
@@ -97,11 +98,16 @@ public class CostTest {
 
     @Test
     public void rest21(){
-        RoleService roleService = (RoleService) context.getBean("roleService");
+
         List<Module_info> roleModuleByRoleId = roleService.findRoleModuleByRoleId(611);
         for (Module_info module_info : roleModuleByRoleId) {
             System.out.println(module_info);
         }
+    }
+
+    @Test
+    public void test1231(){
+
     }
 
 

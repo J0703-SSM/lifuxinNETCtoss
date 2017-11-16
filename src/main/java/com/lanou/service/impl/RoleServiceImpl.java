@@ -52,4 +52,22 @@ public class RoleServiceImpl implements RoleService {
     public Role_info findRoleById(Integer role_id) {
         return roleMapper.findRoleById(role_id);
     }
+
+    // 通过role_id修改角色名称
+    public void updateRole(Role_info role_info) {
+        roleMapper.updateRole(role_info);
+    }
+
+    // 删除中间表的关联
+    public void deleteRoleModule(Integer role_id) {
+        roleMapper.deleteRoleModule(role_id);
+    }
+    public void deleteRoleInfo(Integer role_id) {
+        roleMapper.deleteRoleInfo(role_id);
+    }
+
+    public Role_info findByName(String role_name) {
+        return roleMapper.findByName(role_name);
+    }
+
 }

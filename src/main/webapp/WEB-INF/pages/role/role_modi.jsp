@@ -49,32 +49,34 @@
         <div id="main">           
             <!--保存操作后的提示信息：成功或者失败-->
             <div id="save_result_info" class="save_success">保存成功！</div>
-            <form action="" method="" class="main_form">
+            <form action="/updateRoleInfoAndModuleInfo?role_id=${roleInfo.role_id}" method="post" class="main_form">
                 <div class="text_info clearfix"><span>角色名称：</span></div>
                 <div class="input_info">
-                    <input type="text" class="width200" value="${roleInfo.role_name}" />
+                    <input type="text" name="role_name"  class="width200" value="${roleInfo.role_name}"/>
                     <span class="required">*</span>
-                    <div class="validate_msg_medium error_msg">不能为空，且为20长度的字母、数字和汉字的组合</div>
+                    <div class="validate_msg_medium">${msg1}</div>
                 </div>                    
                 <div class="text_info clearfix"><span>设置权限：</span></div>
                 <div class="input_info_high">
                     <div class="input_info_scroll">
                         <ul>
-                            <li><input type="checkbox" <c:if test="${roleModuleByRoleId.contains('管理员管理')}">checked</c:if>/>管理员管理</li>
-                            <li><input type="checkbox" <c:if test="${roleModuleByRoleId.contains('角色管理')}">checked</c:if>/>角色管理</li>
-                            <li><input type="checkbox" <c:if test="${roleModuleByRoleId.contains('资费管理')}">checked</c:if>/>资费管理</li>
-                            <li><input type="checkbox" <c:if test="${roleModuleByRoleId.contains('账务账号')}">checked</c:if>/>账务账号</li>
-                            <li><input type="checkbox" <c:if test="${roleModuleByRoleId.contains('业务账号')}">checked</c:if>/>业务账号</li>
-                            <li><input type="checkbox" <c:if test="${roleModuleByRoleId.contains('账单')}">checked</c:if>/>账单</li>
-                            <li><input type="checkbox" <c:if test="${roleModuleByRoleId.contains('报表')}">checked</c:if>/>报表</li>
+                            <c:forEach items="${allModule}" var="add">
+                            <li><input type="checkbox" name="name" value="${add.name}"
+                                        <c:forEach items="${roleModuleByRoleId}" var="roleByRoleId">
+                                            <c:if test="${add.name.contains(roleByRoleId.name)}">checked</c:if>
+                                        </c:forEach>/>
+                                        ${add.name}
+                            </li>
+                            </c:forEach>
                         </ul>
                     </div>
                     <span class="required">*</span>
-                    <div class="validate_msg_tiny">至少选择一个权限</div>
+                    <div class="validate_msg_tiny">${msg}</div>
                 </div>
                 <div class="button_info clearfix">
-                    <input type="button" value="保存" class="btn_save" onclick="showResult();" />
-                    <input type="button" value="取消" class="btn_save" />
+                    <%-- onclick="showResult();" --%>
+                    <input type="submit" value="保存" class="btn_save"/>
+                    <input type="button" value="取消" class="btn_save" onclick="history.back()"/>
                 </div>
             </form> 
         </div>

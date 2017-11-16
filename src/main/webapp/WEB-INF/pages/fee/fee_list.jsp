@@ -80,12 +80,12 @@
 <div id="navi">
     <ul id="menu">
         <li><a href="/login" class="index_off"></a></li>
-        <li><a href="../role/role_list.jsp" class="role_off"></a></li>
+        <li><a href="/role_list" class="role_off"></a></li>
 
         <li><a href="/admin_list" class="admin_off"></a></li>
         <li><a href="/fee_list" class="fee_on"></a></li>
 
-        <li><a href="../account/account_list.jsp" class="account_off"></a></li>
+        <li><a href="/account_list" class="account_off"></a></li>
         <li><a href="../service/service_list.jsp" class="service_off"></a></li>
         <li><a href="../bill/bill_list.jsp" class="bill_off"></a></li>
         <li><a href="../report/report_list.jsp" class="report_off"></a></li>
@@ -168,8 +168,6 @@
                                 <input type="button" value="删除" class="btn_delete"
                                        onclick="deleteCost(${cost.cost_id});"/>
                             </c:if>
-
-
                         </td>
                     </tr>
                 </c:forEach>

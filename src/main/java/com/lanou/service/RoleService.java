@@ -5,6 +5,7 @@ import com.lanou.domain.Role_info;
 import com.lanou.domain.Role_module;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * Created by dllo on 17/11/14.
@@ -35,5 +36,16 @@ public interface RoleService {
     // 通过id查询对象
     Role_info findRoleById(Integer role_id);
 
+    // 通过role_id修改角色的名字
+    void updateRole(Role_info role_info);
+
+    // 删除中间表的关联
+    void deleteRoleModule(Integer role_id);
+
+    // 删除角色表
+    void deleteRoleInfo(Integer role_id);
+
+    // 通过角色名字查找角色的对象
+    Role_info findByName(String role_name);
 
 }
