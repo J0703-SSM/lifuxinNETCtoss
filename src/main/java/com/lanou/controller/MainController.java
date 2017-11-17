@@ -1,7 +1,6 @@
 package com.lanou.controller;
 
 import com.lanou.domain.Cost;
-import com.lanou.response.AjaxLoginResult;
 import com.lanou.service.CostService;
 import com.lanou.util.PageBean;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,9 +15,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.sql.Timestamp;
 import java.util.Date;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
 
 /**
  * Created by dllo on 17/11/11.
@@ -30,11 +26,7 @@ public class MainController {
     @Autowired
     private CostService costService;
 
-    // 登录
-    @RequestMapping(value = "/login")
-    public String index() {
-        return "index";
-    }
+
 
     // 跳转到资费管理
     @RequestMapping(value = "/fee_list")

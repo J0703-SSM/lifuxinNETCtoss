@@ -1,12 +1,19 @@
 ﻿<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page isELIgnored="false" %>
 <html>
     <head>
         <title></title>
+        <script src="/resources/js/jquery-3.2.1.js"></script>
         <link type="text/css" rel="stylesheet" media="all" href="/resources/styles/global.css" />
         <link type="text/css" rel="stylesheet" media="all" href="/resources/styles/global_color.css" />
         <script language="javascript" type="text/javascript">
             //保存结果的提示
             function showResult() {
+
+
+
+
+
                 showResultDiv(true);
                 window.setTimeout("showResultDiv(false);", 3000);
             }
@@ -62,18 +69,19 @@
         <!--导航区域开始-->
         <div id="navi">
             <ul id="menu">
-                <li><a href="/login" class="index_off"></a></li>
+                <li><a href="/index" class="index_on"></a></li>
                 <li><a href="/role_list" class="role_off"></a></li>
 
                 <li><a href="/admin_list" class="admin_off"></a></li>
+                <li><a href="/fee_list" class="fee_off"></a></li>
+                <li><a href="/account_list" class="account_off"></a></li>
 
-                <li><a href="/fee_list" class="fee_on"></a></li>
-                <li><a href="../account/account_list.jsp" class="account_off"></a></li>
-                <li><a href="../service/service_list.jsp" class="service_off"></a></li>
-                <li><a href="../bill/bill_list.jsp" class="bill_off"></a></li>
-                <li><a href="../report/report_list.jsp" class="report_off"></a></li>
-                <li><a href="../user/user_info.jsp" class="information_off"></a></li>
-                <li><a href="../user/user_modi_pwd.jsp" class="password_off"></a></li>
+                <li><a href="service/service_list.jsp" class="service_off"></a></li>
+                <li><a href="../pages/bill/bill_list.jsp" class="bill_off"></a></li>
+                <li><a href="report/report_list.jsp" class="report_off"></a></li>
+
+                <li><a href="/user_info" class="information_off"></a></li>
+                <li><a href="/user_modi_pwd" class="password_off"></a></li>
             </ul>
         </div>
         <!--导航区域结束-->
@@ -123,8 +131,8 @@
                     <div class="validate_msg_short error_msg">100长度的字母、数字、汉字和下划线的组合</div>
                 </div>                    
                 <div class="button_info clearfix">
-                    <%--onclick="showResult();"--%>
-                    <input type="submit" value="保存" class="btn_save"/>
+
+                    <input type="submit" value="保存" class="btn_save" onclick="showResult();"/>
                     <input type="button" value="取消" class="btn_save"/>
                 </div>
             </form>  

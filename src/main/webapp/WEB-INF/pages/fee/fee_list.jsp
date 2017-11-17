@@ -5,6 +5,7 @@
 <head>
     <title></title>
     <script src="/resources/js/jquery-3.2.1.js"></script>
+    <script src="/resources/js/bootstrap.js"></script>
     <link type="text/css" rel="stylesheet" media="all" href="/resources/styles/global.css"/>
     <link type="text/css" rel="stylesheet" media="all" href="/resources/styles/global_color.css"/>
     <script language="javascript" type="text/javascript">
@@ -43,7 +44,6 @@
                     },
                     success: function () {
                         document.getElementById("operate_result_info").style.display = "block";
-                        window.location.reload()
                     }
                 })
 
@@ -62,7 +62,6 @@
                     },
                     success: function () {
                         document.getElementById("operate_result_info").style.display = "block";
-                        window.location.reload()
                     }
                 })
             }
@@ -79,18 +78,19 @@
 <!--导航区域开始-->
 <div id="navi">
     <ul id="menu">
-        <li><a href="/login" class="index_off"></a></li>
+        <li><a href="/index" class="index_on"></a></li>
         <li><a href="/role_list" class="role_off"></a></li>
 
         <li><a href="/admin_list" class="admin_off"></a></li>
-        <li><a href="/fee_list" class="fee_on"></a></li>
-
+        <li><a href="/fee_list" class="fee_off"></a></li>
         <li><a href="/account_list" class="account_off"></a></li>
-        <li><a href="../service/service_list.jsp" class="service_off"></a></li>
-        <li><a href="../bill/bill_list.jsp" class="bill_off"></a></li>
-        <li><a href="../report/report_list.jsp" class="report_off"></a></li>
-        <li><a href="../user/user_info.jsp" class="information_off"></a></li>
-        <li><a href="../user/user_modi_pwd.jsp" class="password_off"></a></li>
+
+        <li><a href="service/service_list.jsp" class="service_off"></a></li>
+        <li><a href="../pages/bill/bill_list.jsp" class="bill_off"></a></li>
+        <li><a href="report/report_list.jsp" class="report_off"></a></li>
+
+        <li><a href="/user_info" class="information_off"></a></li>
+        <li><a href="/user_modi_pwd" class="password_off"></a></li>
     </ul>
 </div>
 <!--导航区域结束-->
@@ -124,7 +124,8 @@
         </div>
         <!--启用操作的操作提示-->
         <div id="operate_result_info" class="operate_success">
-            <img src="/resources/images/close.png" onclick="this.parentNode.style.display='none';"/>
+            <img src="/resources/images/close.png"
+                 onclick="this.parentNode.style.display='none';window.location.reload()"/>
             删除成功！
         </div>
         <!--数据区域：用表格展示数据-->

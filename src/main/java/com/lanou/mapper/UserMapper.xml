@@ -1,0 +1,7 @@
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.lanou.mapper.UserMapper">
+    <update id="updatePassword"
+            parameterType="com.lanou.domain.Admin_info">
+        UPDATE admin_info SET password=#{password} WHERE admin_id=#{admin_id}
+    </update>
+</mapper>

@@ -1,7 +1,9 @@
 ﻿<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@page isELIgnored="false" %>
 <html>
     <head>
         <title></title>
+        <script src="/resources/js/jquery-3.2.1.js"></script>
         <link type="text/css" rel="stylesheet" media="all" href="/resources/styles/global.css" />
         <link type="text/css" rel="stylesheet" media="all" href="/resources/styles/global_color.css" />
         <script language="javascript" type="text/javascript">

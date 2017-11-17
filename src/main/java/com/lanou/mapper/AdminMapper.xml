@@ -59,4 +59,18 @@
         INSERT INTO admin_role(admin_id,role_id) VALUES (#{admin_id},#{role_id})
     </insert>
 
+    <!-- 用户登录 -->
+    <select id="loginAdmin"
+            parameterType="com.lanou.domain.Admin_info"
+            resultType="com.lanou.domain.Admin_info">
+        SELECT * FROM admin_info WHERE admin_code=#{admin_code} AND password=#{password}
+    </select>
+
+    <!-- 根据姓名查询用户 -->
+    <select id="findByName"
+            parameterType="java.lang.String"
+            resultType="com.lanou.domain.Admin_info">
+        SELECT * FROM admin_info WHERE admin_code=#{admin}
+    </select>
+
 </mapper>

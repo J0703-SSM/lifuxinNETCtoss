@@ -4,12 +4,17 @@ import com.lanou.domain.Admin_info;
 import com.lanou.domain.Admin_role;
 import com.lanou.domain.Role_info;
 import com.lanou.service.AdminService;
+import com.lanou.util.VerifyCode;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import java.awt.image.BufferedImage;
+import java.io.IOException;
 import java.sql.Timestamp;
 import java.util.Date;
 import java.util.List;
@@ -23,8 +28,45 @@ public class AdminController {
     @Qualifier("adminService")
     @Autowired
     private AdminService adminService;
+    // 验证码内容
+    private String verifyCodeText;
 
-    private List<Role_info> role_infos;
+//    private List<Role_info> role_infos;
+
+    // 登录
+    @RequestMapping(value = "/login")
+    public String login(Model model,Admin_info admin_info,
+                        String admin_code,String verifyCodeInput,
+                        HttpServletRequest request,HttpServletResponse response) {
+        Admin_info admin_info1 = adminService.loginAdmin(admin_info);
+        request.getServletContext().setAttribute("admin_info",admin_info1);
+        Admin_info byName = adminService.findByName(admin_code);
+        if (byName != null){
+            if (admin_info1 != null){
+                if (!verifyCodeInput.trim().toLowerCase().equals(verifyCodeText) || verifyCodeInput.trim().equals("")){
+                    model.addAttribute("codemsg","验证码错误");
+                    return "login";
+                }
+                return "index";
+            }else {
+                model.addAttribute("psw_msg","密码有误,请重新输入");
+            }
+        }else {
+            model.addAttribute("log_msg","该管理员不存在");
+            return "login";
+        }
+        return "login";
+    }
+    // 获取验证码图片
+    @RequestMapping(value = "/getVerifyCode")
+    public void getVerifyCode(HttpServletRequest request,
+                              HttpServletResponse response) throws IOException {
+        VerifyCode verifyCode = new VerifyCode();
+        BufferedImage image = verifyCode.getImage();
+        verifyCodeText = verifyCode.getText().toLowerCase();
+        verifyCode.output(image,response.getOutputStream());
+
+    }
 
     // 跳转到admin_list主页
     @RequestMapping("/admin_list")

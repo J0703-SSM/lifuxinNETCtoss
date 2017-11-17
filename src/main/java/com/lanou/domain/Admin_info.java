@@ -19,10 +19,6 @@ public class Admin_info {
     private Timestamp enrolldate; // 授权日期
     private List<Role_info> role_infos = new ArrayList<Role_info>();
 
-
-
-
-
     public Admin_info() {
     }
 

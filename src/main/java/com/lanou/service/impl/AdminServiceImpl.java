@@ -42,4 +42,14 @@ public class AdminServiceImpl implements AdminService{
     public void addAdmin_Role(Admin_role admin_role) {
         adminMapper.addAdmin_Role(admin_role);
     }
+
+    // 管理员登录
+    public Admin_info loginAdmin(Admin_info admin_info) {
+       return adminMapper.loginAdmin(admin_info);
+    }
+
+    // 根据名字查询用户
+    public Admin_info findByName(String name) {
+        return adminMapper.findByName(name);
+    }
 }

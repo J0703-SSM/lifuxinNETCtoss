@@ -33,36 +33,32 @@ public class RoleController {
 
     // 添加角色,权限,中间表
     @RequestMapping(value = "/add_role")
-    public String add_role(Model model,Role_info role_info, Role_module role_module,
+    public String add_role(Model model, Role_info role_info, Role_module role_module,
                            Module_info module_info, String[] name) {
         Role_info info = roleService.findByName(role_info.getRole_name());
-        if (info != null){
-            model.addAttribute("addRoleName_msg","亲,用户名已经存在了,换一个吧!");
+        if (info != null) {
+            model.addAttribute("addRoleName_msg", "亲,用户名已经存在了,换一个吧!");
             return "role/role_add";
-        }else {
+        } else {
             roleService.addRole(role_info);
         }
         if (name != null && name.length != 0) {
-            if (name.length > 2 && name.length < 10) {
-                for (int i = 0; i < name.length; i++) {
-                    Module_info moduleByName = roleService.findModuleByName(name[i]);
-                    if (moduleByName != null) {
-                        role_module.setModule_id(moduleByName.getModule_id());
-                        role_module.setRole_id(role_info.getRole_id());
-                        roleService.addRoleModule(role_module);
-                    } else {
-                        module_info.setName(name[i]);
-                        roleService.addModule(module_info);
-                        role_module.setRole_id(role_info.getRole_id());
-                        role_module.setModule_id(module_info.getModule_id());
-                        roleService.addRoleModule(role_module);
-                    }
+            for (int i = 0; i < name.length; i++) {
+                Module_info moduleByName = roleService.findModuleByName(name[i]);
+                if (moduleByName != null) {
+                    role_module.setModule_id(moduleByName.getModule_id());
+                    role_module.setRole_id(role_info.getRole_id());
+                    roleService.addRoleModule(role_module);
+                } else {
+                    module_info.setName(name[i]);
+                    roleService.addModule(module_info);
+                    role_module.setRole_id(role_info.getRole_id());
+                    role_module.setModule_id(module_info.getModule_id());
+                    roleService.addRoleModule(role_module);
                 }
-            }else {
-                return "role/role_add";
             }
-        }else {
-            model.addAttribute("add_msg","亲,你必须选一个权限");
+        } else {
+            model.addAttribute("add_msg", "亲,你必须选一个权限");
             return "role/role_add";
         }
         return "redirect:role_list";
@@ -95,12 +91,12 @@ public class RoleController {
     @RequestMapping(value = "/updateRoleInfoAndModuleInfo")
     public String updateRoleInfoAndModuleInfo(Model model, Role_info role_info, Role_module role_module, String[] name) {
         Role_info role_info1 = new Role_info();
-        if (!role_info.getRole_name().equals("")){
+        if (!role_info.getRole_name().equals("")) {
             role_info1.setRole_name(role_info.getRole_name());
             role_info1.setRole_id(role_info.getRole_id());
             roleService.updateRole(role_info1);
-        }else {
-            model.addAttribute("msg1","角色信息不能为空!");
+        } else {
+            model.addAttribute("msg1", "角色信息不能为空!");
             return "forward:role_modi";
         }
         if (name != null && name.length != 0) {
@@ -121,7 +117,7 @@ public class RoleController {
 
     // 删除角色,以及中间表
     @RequestMapping("/deleteRoleInfo")
-    public String deleteRoleInfo(Integer role_id){
+    public String deleteRoleInfo(Integer role_id) {
         roleService.deleteRoleModule(role_id);
         roleService.deleteRoleInfo(role_id);
         return "redirect:role_list";

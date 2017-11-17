@@ -1,10 +1,12 @@
 ﻿<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@page isELIgnored="false"%>
 <html >
     <head>
         <meta/>
         <title></title>
-        <link type="text/css" rel="stylesheet" media="all" href="styles/global.css" />
-        <link type="text/css" rel="stylesheet" media="all" href="styles/global_color.css" />
+        <script src="/resources/js/jquery-3.2.1.js"></script>
+        <link type="text/css" rel="stylesheet" media="all" href="/resources/styles/global.css" />
+        <link type="text/css" rel="stylesheet" media="all" href="/resources/styles/global_color.css" />
         <script language="javascript" type="text/javascript">
             var timer;
             //启动跳转的定时器

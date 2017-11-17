@@ -4,6 +4,7 @@
 <html>
     <head>
         <title></title>
+
         <link type="text/css" rel="stylesheet" media="all" href="/resources/styles/global.css" />
         <link type="text/css" rel="stylesheet" media="all" href="/resources/styles/global_color.css" />
         <script language="javascript" type="text/javascript">
@@ -31,17 +32,19 @@
         <!--导航区域开始-->
         <div id="navi">
             <ul id="menu">
-                <li><a href="/login" class="index_off"></a></li>
-                <li><a href="/role_list" class="role_on"></a></li>
+                <li><a href="/index" class="index_on"></a></li>
+                <li><a href="/role_list" class="role_off"></a></li>
+
                 <li><a href="/admin_list" class="admin_off"></a></li>
                 <li><a href="/fee_list" class="fee_off"></a></li>
                 <li><a href="/account_list" class="account_off"></a></li>
 
-                <li><a href="../service/service_list.jsp" class="service_off"></a></li>
-                <li><a href="../bill/bill_list.jsp" class="bill_off"></a></li>
-                <li><a href="../report/report_list.jsp" class="report_off"></a></li>
-                <li><a href="../user/user_info.jsp" class="information_off"></a></li>
-                <li><a href="../user/user_modi_pwd.jsp" class="password_off"></a></li>
+                <li><a href="service/service_list.jsp" class="service_off"></a></li>
+                <li><a href="../pages/bill/bill_list.jsp" class="bill_off"></a></li>
+                <li><a href="report/report_list.jsp" class="report_off"></a></li>
+
+                <li><a href="/user_info" class="information_off"></a></li>
+                <li><a href="/user_modi_pwd" class="password_off"></a></li>
             </ul>
         </div>
         <!--导航区域结束-->
@@ -52,9 +55,9 @@
             <form action="/updateRoleInfoAndModuleInfo?role_id=${roleInfo.role_id}" method="post" class="main_form">
                 <div class="text_info clearfix"><span>角色名称：</span></div>
                 <div class="input_info">
-                    <input type="text" name="role_name"  class="width200" value="${roleInfo.role_name}"/>
+                    <input type="text" name="role_name" id="role_name" class="width200" value="${roleInfo.role_name}"/>
                     <span class="required">*</span>
-                    <div class="validate_msg_medium">${msg1}</div>
+                    <div class="validate_msg_medium" id="name_msg">${msg1}</div>
                 </div>                    
                 <div class="text_info clearfix"><span>设置权限：</span></div>
                 <div class="input_info_high">
@@ -75,7 +78,7 @@
                 </div>
                 <div class="button_info clearfix">
                     <%-- onclick="showResult();" --%>
-                    <input type="submit" value="保存" class="btn_save"/>
+                    <input type="submit" value="保存" class="btn_save" onclick="save();"/>
                     <input type="button" value="取消" class="btn_save" onclick="history.back()"/>
                 </div>
             </form> 

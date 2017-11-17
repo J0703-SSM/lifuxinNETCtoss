@@ -5,38 +5,38 @@ package com.lanou.response;
 /**
  * Created by dllo on 17/11/8.
  */
-public class AjaxLoginResult<T> {
+public class AjaxResult<T> {
 
     private int errorCode; // 响应码
     private String message; //当返回错误时,给出错误信息
     private T data; // 用户对象
 
-    public AjaxLoginResult() {
+    public AjaxResult() {
     }
 
-    public AjaxLoginResult(int errorCode, String message, T data) {
+    public AjaxResult(int errorCode, String message, T data) {
         this.errorCode = errorCode;
         this.message = message;
         this.data = data;
     }
 
-    public AjaxLoginResult(int errorCode, T data) {
+    public AjaxResult(int errorCode, T data) {
         this.errorCode = errorCode;
         this.data = data;
     }
 
-    public AjaxLoginResult(String message, T data) {
+    public AjaxResult(String message, T data) {
         this.message = message;
         this.data = data;
     }
 
-    public AjaxLoginResult(String message) {
+    public AjaxResult(String message) {
         this.message = message;
     }
 
     @Override
     public String toString() {
-        return "AjaxLoginResult{" +
+        return "AjaxResult{" +
                 "errorCode=" + errorCode +
                 ", message='" + message + '\'' +
                 ", data=" + data +

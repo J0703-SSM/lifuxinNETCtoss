@@ -24,4 +24,10 @@ public interface AdminMapper {
     // 添加中间表
     void addAdmin_Role(Admin_role admin_role);
 
+    // 管理员登录
+    Admin_info loginAdmin(Admin_info admin_info);
+
+    // 根据姓名查询用户
+    Admin_info findByName(String name);
+
 }
