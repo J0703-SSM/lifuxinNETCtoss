@@ -70,8 +70,9 @@ public class AdminController {
 
     // 跳转到admin_list主页
     @RequestMapping("/admin_list")
-    public String admin_List(Model model){
+    public String admin_List(Model model,HttpServletRequest request){
         List<Admin_info> adminInfos = adminService.findAll();
+        request.getServletContext().setAttribute("adminInfos",adminInfos);
         model.addAttribute("adminInfos",adminInfos);
         return "admin/admin_list";
     }

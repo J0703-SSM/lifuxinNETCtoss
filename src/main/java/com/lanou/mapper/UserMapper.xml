@@ -4,4 +4,36 @@
             parameterType="com.lanou.domain.Admin_info">
         UPDATE admin_info SET password=#{password} WHERE admin_id=#{admin_id}
     </update>
+
+    <!-- 多表查询,显示所有 -->
+    <resultMap id="rolesByAdminInfos" type="com.lanou.domain.Admin_info">
+        <id column="admin_id" property="admin_id"/>
+        <result column="admin_code" property="admin_code"/>
+        <result column="password" property="password"/>
+        <result column="name" property="name"/>
+        <result column="telephone" property="telephone"/>
+        <result column="email" property="email"/>
+        <result column="enrolldate" property="enrolldate"/>
+        <collection property="role_infos"
+                    ofType="com.lanou.domain.Module_info">
+            <id column="module_id" property="module_id"/>
+            <result column="name" property="name"/>
+        </collection>
+    </resultMap>
+    <select id="findModuleInfo"
+            parameterType="int"
+            resultMap="rolesByAdminInfos">
+        SELECT module_info.name
+        FROM admin_info,admin_role,role_module,module_info
+        WHERE admin_info.admin_id = admin_role.admin_id
+        AND admin_role.role_id = role_module.role_id
+        AND role_module.module_id = module_info.module_id
+        AND admin_info.admin_id = #{admin_id};
+    </select>
+    <!-- 修改个人信息 -->
+    <update id="updateAdminInfo"
+            parameterType="com.lanou.domain.Admin_info">
+        UPDATE admin_info SET name=#{name},telephone=#{telephone},email=#{email} WHERE admin_id=#{admin_id}
+    </update>
+
 </mapper>

@@ -19,6 +19,9 @@ public class Admin_info {
     private Timestamp enrolldate; // 授权日期
     private List<Role_info> role_infos = new ArrayList<Role_info>();
 
+
+    private List<Module_info> module_infos = new ArrayList<Module_info>();
+
     public Admin_info() {
     }
 
@@ -119,5 +122,13 @@ public class Admin_info {
 
     public void setRole_infos(List<Role_info> role_infos) {
         this.role_infos = role_infos;
+    }
+
+    public List<Module_info> getModule_infos() {
+        return module_infos;
+    }
+
+    public void setModule_infos(List<Module_info> module_infos) {
+        this.module_infos = module_infos;
     }
 }

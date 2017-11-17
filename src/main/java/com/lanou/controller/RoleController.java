@@ -11,6 +11,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 
 /**
@@ -66,9 +67,10 @@ public class RoleController {
 
     // 首页显示所有人的业务
     @RequestMapping(value = "/role_list")
-    public String role_list(Model model) {
+    public String role_list(Model model, HttpServletRequest request) {
         List<Role_info> roleModule = roleService.findRoleModule();
         model.addAttribute("roleModule", roleModule);
+        request.getServletContext().setAttribute("roleModule",roleModule);
         return "role/role_list";
     }
 
