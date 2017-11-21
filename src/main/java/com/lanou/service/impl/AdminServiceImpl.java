@@ -2,6 +2,7 @@ package com.lanou.service.impl;
 
 import com.lanou.domain.Admin_info;
 import com.lanou.domain.Admin_role;
+import com.lanou.domain.Module_info;
 import com.lanou.domain.Role_info;
 import com.lanou.mapper.AdminMapper;
 import com.lanou.service.AdminService;
@@ -52,4 +53,20 @@ public class AdminServiceImpl implements AdminService{
     public Admin_info findByName(String name) {
         return adminMapper.findByName(name);
     }
+
+    // 密码重置
+    public int rePassword(Admin_info admin_info) {
+      return   adminMapper.rePassword(admin_info);
+    }
+
+    // 通过id查询管理员的对象
+    public Admin_info findByAdminId(Integer admin_id) {
+        return adminMapper.findByAdminId(admin_id);
+    }
+
+    public List<Module_info> findAllModule() {
+        return adminMapper.findAllModule();
+    }
+
+
 }

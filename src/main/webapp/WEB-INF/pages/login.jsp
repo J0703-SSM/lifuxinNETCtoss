@@ -79,8 +79,8 @@
             <tr>
                 <td class="login_info">验证码：</td>
                 <td class="width70"><input name="verifyCodeInput" type="text" class="width70"
-                                           id="verifyCodeInput" onblur="verify()"/></td>
-                <td><img src="/getVerifyCode" alt="验证码" title="点击更换" id="verifyCodeImage" onclick="changeImage()"/></td>
+                                           id="verifyCodeInput" placeholder="忽略大小写" onblur="verify()"/></td>
+                <td><img src="/getVerifyCode" alt="验证码" title="点击更换"  id="verifyCodeImage" onclick="changeImage()"/></td>
                 <td><span class="required" id="verifyCodeInput_msg">${codemsg}</span></td>
             </tr>
             <tr>

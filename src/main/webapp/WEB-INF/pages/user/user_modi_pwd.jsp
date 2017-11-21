@@ -93,24 +93,24 @@
             <form action="" method="" class="main_form">
                 <div class="text_info clearfix"><span>旧密码：</span></div>
                 <div class="input_info">
-                    <input id="oldPwd" type="password" class="width200"/><span class="required">*</span>
+                    <input id="oldPwd" type="password" class="width200"/><span class="required"></span>
                     <div id="old_msg" class="validate_msg_medium"></div>
                 </div>
                 <div class="text_info clearfix"><span>新密码：</span></div>
                 <div class="input_info">
-                    <input id="newPwd" type="password"  class="width200" /><span class="required">*</span>
+                    <input id="newPwd" type="password"  class="width200" /><span class="required"></span>
                     <div id="new_msg" class="validate_msg_medium"></div>
                 </div>
                 <div class="text_info clearfix"><span>重复新密码：</span></div>
                 <div class="input_info">
-                    <input id="rePwd" type="password" class="width200"  /><span class="required">*</span>
+                    <input id="rePwd" type="password" class="width200"  /><span class="required"></span>
                     <div id="re_msg" class="validate_msg_medium"></div>
                 </div>
                 <div class="button_info clearfix">
                     <input type="button" value="保存" class="btn_save"  onclick="showResult();" />
-                    <input type="button" value="取消" class="btn_save" />
+                    <input type="button" value="取消" class="btn_save" onclick="history.back()"/>
                     <div id="msg" style="color: red"  class="validate_msg_medium"></div>
-                </div>
+                </div>-
             </form>
         </div>
         <!--主要区域结束-->

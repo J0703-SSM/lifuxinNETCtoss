@@ -73,4 +73,22 @@
         SELECT * FROM admin_info WHERE admin_code=#{admin}
     </select>
 
+    <!-- 密码重置 -->
+    <update id="rePassword"
+            parameterType="com.lanou.domain.Admin_info">
+        UPDATE admin_info SET password=#{password} WHERE admin_id=#{admin_id}
+    </update>
+    <!-- 通过id查询管理员的对象 -->
+    <select id="findByAdminId"
+            parameterType="int">
+        SELECT * FROM admin_info WHERE admin_id=#{admin_id}
+    </select>
+
+    <!-- 查询所有权限 -->
+    <select id="findAllModule"
+            resultType="com.lanou.domain.Module_info">
+        SELECT * FROM module_info
+    </select>
+
+
 </mapper>

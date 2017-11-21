@@ -19,8 +19,28 @@
         }
         //重置密码
         function resetPwd() {
-            alert("请至少选择一条数据！");
-            //document.getElementById("operate_result_info").style.display = "block";
+            if ($(":checkbox:checked").length == 0) {
+                alert("请至少选择一条数据！");
+            } else {
+                var cbValue = "";
+                $(":checkbox:checked").each(function () {
+                    cbValue += $(this).val() + ","
+                })
+
+                $.ajax({
+                    type: "get",
+                    url: "admin_resetPwd",
+                    data: {
+                        cbValue: cbValue
+                    },
+                    success: function (result) {
+                        if (result.message != 0) {
+                            $("#result_info").html(result.message);
+                            document.getElementById("operate_result_info").style.display = "block";
+                        }
+                    }
+                })
+            }
         }
         //删除
         function deleteAdmin() {
@@ -36,6 +56,8 @@
                 }
             }
         }
+
+
     </script>
 </head>
 <body>
@@ -72,25 +94,23 @@
             <div>
                 模块：
                 <select id="selModules" class="select_search">
-                    <option>全部</option>
-                    <option>角色管理</option>
-                    <option>管理员管理</option>
-                    <option>资费管理</option>
-                    <option>账务账号</option>
-                    <option>业务账号</option>
-                    <option>账单管理</option>
-                    <option>报表</option>
+                    <option value="-1">---请选择---</option>
+                    <c:forEach items="${allModule}" var="all">
+                        <option value="${all.module_id}">${all.name}</option>
+                    </c:forEach>
                 </select>
             </div>
-            <div>角色：<input type="text" value="" class="text_search width200"/></div>
-            <div><input type="button" value="搜索" class="btn_search"/></div>
+            <div>角色：<input type="text" name="role_name" value="" class="text_search width200"/></div>
+
+            <div><input type="submit" value="搜索" class="btn_search"/></div>
+
             <input type="button" value="密码重置" class="btn_add" onclick="resetPwd();"/>
             <input type="button" value="增加" class="btn_add" onclick="location.href='/admin_add';"/>
         </div>
         <!--删除和密码重置的操作提示-->
-        <div id="operate_result_info" class="operate_fail">
+        <div id="operate_result_info" class="operate_success">
             <img src="/resources/images/close.png" onclick="this.parentNode.style.display='none';"/>
-            <span>删除失败！数据并发错误。</span><!--密码重置失败！数据并发错误。-->
+            <span>密码重置成功</span><!--密码重置失败！数据并发错误。-->
         </div>
         <!--数据区域：用表格展示数据-->
         <div id="data">
@@ -112,7 +132,7 @@
 
                 <c:forEach items="${adminInfos}" var="info">
                     <tr>
-                        <td><input type="checkbox"/></td>
+                        <td><input  value="${info.admin_id}" type="checkbox"/></td>
                         <td>${info.admin_id}</td>
                         <td>${info.admin_code}</td>
                         <td>${info.name}</td>
@@ -131,8 +151,6 @@
                                     </c:if>
                                 </c:forEach>
                             </div>
-
-
                         </td>
                         <td class="td_modi">
                             <input type="button" value="修改" class="btn_modify"
@@ -145,15 +163,15 @@
             </table>
         </div>
         <!--分页-->
-        <div id="pages">
-            <a href="#">上一页</a>
-            <a href="#" class="current_page">1</a>
-            <a href="#">2</a>
-            <a href="#">3</a>
-            <a href="#">4</a>
-            <a href="#">5</a>
-            <a href="#">下一页</a>
-        </div>
+        <%--<div id="pages">--%>
+            <%--<a href="#">上一页</a>--%>
+            <%--<a href="#" class="current_page">1</a>--%>
+            <%--<a href="#">2</a>--%>
+            <%--<a href="#">3</a>--%>
+            <%--<a href="#">4</a>--%>
+            <%--<a href="#">5</a>--%>
+            <%--<a href="#">下一页</a>--%>
+        <%--</div>--%>
     </form>
 </div>
 <!--主要区域结束-->

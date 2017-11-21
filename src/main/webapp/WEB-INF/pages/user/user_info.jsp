@@ -120,7 +120,7 @@
         <div class="text_info clearfix"><span>姓名：</span></div>
         <div class="input_info">
             <input id="name" name="name" type="text" value="${applicationScope.admin_info.name}"/>
-            <span class="required">*</span>
+            <%--<span class="required">*</span>--%>
             <%--20长度以内的汉字、字母的组合--%>
             <div id="name_msg" class="validate_msg_long"></div>
         </div>
@@ -142,7 +142,7 @@
         <div id="msg" class="validate_msg_medium "></div>
         <div class="button_info clearfix">
             <input type="button" value="保存" class="btn_save" onclick="showResult();"/>
-            <input type="button" value="取消" class="btn_save"/>
+            <input type="button" value="取消" class="btn_save" onclick="history.back()"/>
         </div>
     </form>
 </div>
