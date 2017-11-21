@@ -42,6 +42,8 @@ public interface AdminMapper {
     // 查询所有权限
     List<Module_info> findAllModule();
 
+   // List<Admin_info> findHigh(Integer module);
+
 
 
 }

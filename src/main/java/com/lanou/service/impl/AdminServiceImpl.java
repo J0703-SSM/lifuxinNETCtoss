@@ -68,5 +68,9 @@ public class AdminServiceImpl implements AdminService{
         return adminMapper.findAllModule();
     }
 
+//    public List<Admin_info> findHigh(Integer module_id) {
+//        return adminMapper.findHigh(module_id);
+//    }
+
 
 }

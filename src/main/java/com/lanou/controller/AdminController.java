@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.sql.Timestamp;
@@ -40,7 +41,7 @@ public class AdminController {
     @RequestMapping(value = "/login")
     public String login(Model model, Admin_info admin_info,
                         String admin_code, String verifyCodeInput,
-                        HttpServletRequest request, HttpServletResponse response) {
+                        HttpServletRequest request, HttpServletResponse response, HttpSession session) {
         Admin_info admin_info1 = adminService.loginAdmin(admin_info);
         request.getServletContext().setAttribute("admin_info", admin_info1);
         Admin_info byName = adminService.findByName(admin_code);
@@ -143,5 +144,11 @@ public class AdminController {
         return ajaxResult;
     }
 
+//    @RequestMapping(value = "/findHigh")
+//    public String findHigh(Model model,Integer module_id){
+//        List<Admin_info> adminInfos = adminService.findHigh(module_id);
+//        model.addAttribute("adminInfos",adminInfos);
+//        return "admin/admin_list";
+//    }
 
 }

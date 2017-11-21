@@ -97,6 +97,7 @@ public class MainController {
     public String addCost1(){
         return "fee/fee_add";
     }
+
     // 添加资费
     @RequestMapping("/addCost")
     public String addCoat(Cost cost){

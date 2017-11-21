@@ -46,9 +46,13 @@ public class UserController {
         return "user/user_modi_pwd";
     }
 
+    // 重新登录
     @RequestMapping("/quit")
     public String quit(HttpServletRequest request) {
+//        System.out.println("2"+request.getServletContext().getAttribute("admin_info"));
         request.getServletContext().removeAttribute("admin_info");
+        request.getServletContext().removeAttribute("name");
+//        System.out.println("1"+request.getServletContext().getAttribute("admin_info"));
         return "login";
     }
 

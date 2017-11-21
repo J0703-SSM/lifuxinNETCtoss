@@ -31,4 +31,6 @@ public class UserServiceImpl implements UserService {
     public void updateAdminInfo(Admin_info admin_info) {
         userMapper.updateAdminInfo(admin_info);
     }
+
+
 }

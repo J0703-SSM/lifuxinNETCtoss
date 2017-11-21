@@ -15,6 +15,16 @@
             <result column="role_name" property="role_name"/>
         </collection>
     </resultMap>
+    <!--<resultMap id="adminAndRole" type="com.lanou.domain.Admin_info" extends="rolesByAdminInfos">-->
+        <!--<collection property="roles" ofType="com.lanou.domain.role_info">-->
+            <!--<id column="role_id" property="roel_id"/>-->
+            <!--<result column="role_name" property="role_name"/>-->
+            <!--<collection property="module_infos" ofType="com.lanou.domain.Module_info">-->
+                <!--<id column="module_id" property="module_id"/>-->
+                <!--<result column="name" property="name"/>-->
+            <!--</collection>-->
+        <!--</collection>-->
+    <!--</resultMap>-->
     <sql id="admin_infoSql">
         admin_info.admin_id,
         admin_info.admin_code,
@@ -36,6 +46,7 @@
         FROM admin_info,admin_role,role_info
         WHERE admin_info.admin_id=admin_role.admin_id
         AND admin_role.role_id=role_info.role_id
+
     </select>
 
     <!-- 添加管理员账号 -->
@@ -89,6 +100,7 @@
             resultType="com.lanou.domain.Module_info">
         SELECT * FROM module_info
     </select>
+
 
 
 </mapper>

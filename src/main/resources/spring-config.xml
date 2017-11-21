@@ -15,6 +15,18 @@
        http://www.springframework.org/schema/tx/spring-tx.xsd
        http://www.springframework.org/schema/aop
        http://www.springframework.org/schema/aop/spring-aop.xsd">
+
+
+    <!--注入hibernate -->
+    <bean id="validator" class="org.springframework.validation.beanvalidation.LocalValidatorFactoryBean">
+        <!-- 声明验证的提供者是Hibernate -->
+        <property name="providerClass"
+                  value="org.hibernate.validator.HibernateValidator">
+        </property>
+    </bean>
+    <!--声明注解-->
+    <mvc:annotation-driven validator="validator"/>
+
     <!-- 引入db属性-->
     <context:property-placeholder location="classpath*:db.properties"/>
     <!-- 加入注解扫描 -->
@@ -24,8 +36,10 @@
     <!-- springMVC第一条:将静态页面的处理交由服务器自己处理,springMVC不处理 -->
     <mvc:default-servlet-handler/>
     <!-- 配置静态资源对应的路径,告诉springmvc不用处理这些路径 -->
-    <!--<mvc:resources mapping="images/**" location="/images/"/>-->
-    <!--<mvc:resources mapping="styles/**" location="/styles/"/>-->
+    <mvc:resources mapping="images/**" location="/images/"/>
+    <mvc:resources mapping="styles/**" location="/styles/"/>
+    <mvc:resources mapping="js/**" location="/js/"/>
+
     <!-- springMVC第二条: 配置视图解析规则 -->
     <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
         <!-- 配置视图解析的前缀 -->
@@ -72,5 +86,16 @@
         <!-- 定义sessionFactory -->
         <property name="sqlSessionFactoryBeanName" value="sessionFactory"/>
     </bean>
+    <!-- 配置拦截器 -->
+    <mvc:interceptors>
+        <!-- 拦截器执行的顺序依照下面的顺序执行 -->
+        <mvc:interceptor>
+            <!-- 要拦截的请求路径 -->
+            <mvc:mapping path="/*"/>
+            <mvc:exclude-mapping path="/getVerifyCode"/>
+            <!-- 拦截器所对应的类路径 -->
+            <bean class="com.lanou.interceptor.LoginInterceptor"/>
+        </mvc:interceptor>
+    </mvc:interceptors>
 
 </beans>

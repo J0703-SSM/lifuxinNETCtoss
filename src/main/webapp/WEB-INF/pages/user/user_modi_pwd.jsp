@@ -58,7 +58,6 @@
         <div id="header">
             <img src="/resources/images/logo.png" alt="logo" class="left"/>
             <a href="/quit">[退出]</a>
-            <a href="/login">[重新登录]</a>
         </div>
 
         <!--Logo区域结束-->
@@ -88,7 +87,7 @@
             <div id="operate_result_info" class="operate_success">
                 <img src="/resources/images/close.png"
                      onclick="this.parentNode.style.display='none';window.location.reload()"/>
-                修改密码成功,下次登录就需要新密码了!
+                修改密码成功,请点击退出重新登录!
             </div>
             <form action="" method="" class="main_form">
                 <div class="text_info clearfix"><span>旧密码：</span></div>

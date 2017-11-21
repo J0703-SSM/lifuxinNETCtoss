@@ -88,12 +88,12 @@
 <!--导航区域结束-->
 <!--主要区域开始-->
 <div id="main">
-    <form action="" method="">
+    <form action="/findHigh" method="post">
         <!--查询-->
         <div class="search_add">
             <div>
                 模块：
-                <select id="selModules" class="select_search">
+                <select id="selModules" name="module_id" class="select_search">
                     <option value="-1">---请选择---</option>
                     <c:forEach items="${allModule}" var="all">
                         <option value="${all.module_id}">${all.name}</option>
@@ -107,6 +107,7 @@
             <input type="button" value="密码重置" class="btn_add" onclick="resetPwd();"/>
             <input type="button" value="增加" class="btn_add" onclick="location.href='/admin_add';"/>
         </div>
+    </form>
         <!--删除和密码重置的操作提示-->
         <div id="operate_result_info" class="operate_success">
             <img src="/resources/images/close.png" onclick="this.parentNode.style.display='none';"/>

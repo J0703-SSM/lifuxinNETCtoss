@@ -21,6 +21,7 @@ public class Admin_info {
 
 
     private List<Module_info> module_infos = new ArrayList<Module_info>();
+    private List<Role_info> roles = new ArrayList<Role_info>();
 
     public Admin_info() {
     }
@@ -130,5 +131,14 @@ public class Admin_info {
 
     public void setModule_infos(List<Module_info> module_infos) {
         this.module_infos = module_infos;
+    }
+
+
+    public List<Role_info> getRoles() {
+        return roles;
+    }
+
+    public void setRoles(List<Role_info> roles) {
+        this.roles = roles;
     }
 }

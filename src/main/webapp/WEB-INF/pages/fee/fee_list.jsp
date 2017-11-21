@@ -126,7 +126,7 @@
         <div id="operate_result_info" class="operate_success">
             <img src="/resources/images/close.png"
                  onclick="this.parentNode.style.display='none';window.location.reload()"/>
-            删除成功！
+            操作成功！
         </div>
         <!--数据区域：用表格展示数据-->
         <div id="data">

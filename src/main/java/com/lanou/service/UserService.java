@@ -16,4 +16,6 @@ public interface UserService {
 
     // 修改个人信息
     void updateAdminInfo(Admin_info admin_info);
+
+
 }

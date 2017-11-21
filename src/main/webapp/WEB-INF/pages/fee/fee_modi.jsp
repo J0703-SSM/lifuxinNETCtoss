@@ -142,7 +142,7 @@
         <div class="button_info clearfix">
             <%--onclick="showResult(${cost.cost_id});"--%>
             <input type="submit" value="保存" class="btn_save"/>
-            <input type="button" value="取消" class="btn_save"/>
+            <input type="button" value="取消" class="btn_save" onclick="history.back()"/>
         </div>
     </form>
 </div>
