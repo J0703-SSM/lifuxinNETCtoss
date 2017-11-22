@@ -15,8 +15,6 @@
        http://www.springframework.org/schema/tx/spring-tx.xsd
        http://www.springframework.org/schema/aop
        http://www.springframework.org/schema/aop/spring-aop.xsd">
-
-
     <!--注入hibernate -->
     <bean id="validator" class="org.springframework.validation.beanvalidation.LocalValidatorFactoryBean">
         <!-- 声明验证的提供者是Hibernate -->

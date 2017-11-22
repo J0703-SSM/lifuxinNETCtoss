@@ -92,7 +92,7 @@
                         <td>2013-02-23 00:00:00</td>                            
                         <td class="td_modi">
                             <input type="button" value="暂停" class="btn_pause" onclick="setState();" />
-                            <input type="button" value="修改" class="btn_modify" onclick="location.href='account_modi.jsp';" />
+                            <input type="button" value="修改" class="btn_modify" onclick="location.href='/account_modi';" />
                             <input type="button" value="删除" class="btn_delete" onclick="deleteAccount();" />
                         </td>
                     </tr>
